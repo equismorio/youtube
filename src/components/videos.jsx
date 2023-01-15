@@ -10,8 +10,8 @@ class Videos extends Component {
     console.log("Videos - Rendered");
     return (
       <div className="video-grid">
-        {this.props.videos.map((video) => (
-          <Video key={video.id} video={video} />
+        {this.props.videos.items.map((video) => (
+          <Video key={video.id.videoId} video={video} />
         ))}
       </div>
     );
