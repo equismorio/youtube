@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+// import React from "react";
 import "../general.css";
 import "../header.css";
 import "../sidebar.css";
@@ -6,6 +8,33 @@ import "../sidebar.css";
 // Stateless Functional Component example
 const NavBar = (props) => {
   console.log("NavBar - Rendered");
+  const [inputValue, setInputValue] = useState("");
+  // setInputValue("");
+
+  // class NavBar extends Component {
+  //   state = {
+  //     inputValue: null,
+  //   };
+  // console.log(props);
+  // constructor(props) {
+  //   super(props);
+  //   // this.reset();
+  // }
+  // reset() {
+  //   //   // Always set the initial state in its own function, so that
+  //   //   // you can trivially reset your components at any point.
+  //   this.setState = {
+  //     inputValue: "",
+  //   };
+  // }
+  const onFilter = (e) => {
+    e.preventDefault();
+    inputValue.trim() && props.onInput(inputValue);
+    setInputValue("");
+    // e.target.reset();
+  };
+  // render() {
+  //   console.log("NavBar - Rendered");
   return (
     <div className="header">
       <div className="left-section">
@@ -14,31 +43,50 @@ const NavBar = (props) => {
           src="icons/hamburger-menu.svg"
           alt="menu"
         />
-        <img
-          className="youtube-logo"
-          src="icons/youtube-logo.svg"
-          alt="youtube"
-        />
+        <img className="youtube-logo" src="icons/tubeYou.jpeg" alt="youtube" />
       </div>
-      <div className="middle-section">
-        <input className="search-bar" type="text" placeholder="Search" />
-        <button className="search-button">
-          <img className="search-icon" src="icons/search.svg" alt="search" />
-          <div className="tooltip">Search</div>
-        </button>
-        <button className="voice-search-button">
+      <form onSubmit={onFilter} className="middle-section">
+        <input
+          className="search-bar"
+          type="text"
+          placeholder="Type filter value here"
+          value={inputValue}
+          onChange={(evt) => setInputValue(evt.target.value)}
+        />
+        <div>
+          <button
+            className="search-button"
+            // onClick={() => this.props.onInput(this.state.inputValue)}
+          >
+            <img
+              // onClick={() => this.props.onInput(this.state.inputValue)}
+              value={inputValue}
+              className="search-icon"
+              src="icons/search.svg"
+              alt="search"
+            />
+            <div className="tooltip">Filter</div>
+          </button>
+        </div>
+        <button className="voice-search-button" onClick={() => props.onReset()}>
           <img
+            // onClick={() => this.props.onReset()}
             className="voice-search-icon"
-            src="icons/voice-search-icon.svg"
+            src="icons/refresh-icon.jpeg"
             alt="mic"
           />
-          <div className="tooltip">Search with your voice</div>
+          <div className="tooltip">Refresh Search Filter</div>
         </button>
-      </div>
+      </form>
       <div className="right-section">
-        <div className="upload-icon-container">
-          <img className="upload-icon" src="icons/upload.svg" alt="upload" />
-          <div className="tooltip">Upload</div>
+        <div className="sort-icon-container" onClick={() => props.onSort()}>
+          <img
+            // onClick={() => this.props.onSort()}
+            className="sort-icon"
+            src="icons/sort.png"
+            alt="sort"
+          />
+          <div className="tooltip">Sort Video Toggle</div>
         </div>
         <div className="youtube-apps-container">
           <img
@@ -54,43 +102,56 @@ const NavBar = (props) => {
             src="icons/notifications.svg"
             alt="notifications"
           />
-          <div className="notifications-count">3</div>
-          <div className="tooltip">Notifications</div>
+          <div className="notifications-count">{props.totalVideos}</div>
+          <div className="tooltip">Count of videos</div>
         </div>
         <img
           className="current-user-picture"
-          src="icons/my-channel.jpeg"
+          src="icons/myChannel.jpeg"
           alt="mychannel"
         />
       </div>
       <div className="sidebar">
-        <div className="sidebar-link">
-          <img src="icons/home.svg" alt="" />
-          <div>Home</div>
-        </div>
-        <div className="sidebar-link">
-          <img src="icons/explore.svg" alt="" />
-          <div>Explore</div>
-        </div>
+        <Link to="/">
+          <div className="sidebar-link">
+            <img src="icons/home.svg" alt="" />
+            <div>Home</div>
+          </div>
+        </Link>
+        <Link to="/upload">
+          <div className="sidebar-link">
+            <img src="icons/upload.svg" alt="" />
+            <div>Upload-WIP</div>
+          </div>
+        </Link>
         <div className="sidebar-link">
           <img src="icons/subscriptions.svg" alt="" />
-          <div>Subscriptions</div>
+          <div>Subscriptions-WIP</div>
         </div>
         <div className="sidebar-link">
           <img src="icons/originals.svg" alt="" />
-          <div>Originals</div>
+          <div>Originals-WIP</div>
         </div>
         <div className="sidebar-link">
           <img src="icons/youtube-music.svg" alt="" />
-          <div>YouTube Music</div>
+          <div>YouTube Music-WIP</div>
         </div>
         <div className="sidebar-link">
           <img src="icons/library.svg" alt="" />
-          <div>Library</div>
+          <div>Library-WIP</div>
         </div>
       </div>
     </div>
   );
+  // }
+  // updateInputValue(evt) {
+  //   const val = evt.target.value;
+  //   // ...
+  //   this.setState({
+  //     inputValue: val,
+  //   });
+  //   // console.log(val);
+  // }
 };
 
 export default NavBar;

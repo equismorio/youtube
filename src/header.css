@@ -62,7 +62,7 @@
 }
 .search-button,
 .voice-search-button,
-.upload-icon-container,
+.sort-icon-container,
 .youtube-apps-container,
 .notifications-icon-container {
   display: flex;
@@ -72,7 +72,7 @@
 }
 .search-button .tooltip,
 .voice-search-button .tooltip,
-.upload-icon-container .tooltip,
+.sort-icon-container .tooltip,
 .youtube-apps-container .tooltip,
 .notifications-icon-container .tooltip {
   position: absolute;
@@ -92,7 +92,7 @@
 }
 .search-button:hover .tooltip,
 .voice-search-button:hover .tooltip,
-.upload-icon-container:hover .tooltip,
+.sort-icon-container:hover .tooltip,
 .youtube-apps-container:hover .tooltip,
 .notifications-icon-container:hover .tooltip {
   opacity: 1;
@@ -120,9 +120,14 @@
   justify-content: space-between;
   flex-shrink: 0; /* don't shrink */
 }
-.upload-icon {
+/* .sort-icon {
   height: 24px;
+} */
+.sort-icon {
+  height: 16px;
+  /* margin-top: 5px; */
 }
+
 .youtube-apps-icon {
   height: 24px;
 }

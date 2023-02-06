@@ -8,6 +8,9 @@
   z-index: 200;
   padding-top: 5px;
 }
+.sidebar a {
+  text-decoration: none;
+}
 .sidebar-link {
   height: 74px;
   display: flex;
@@ -15,6 +18,9 @@
   align-items: center;
   flex-direction: column;
   cursor: pointer;
+}
+.sidebar-link div {
+  color: black;
 }
 .sidebar-link:hover {
   background-color: rgb(235, 235, 235);
